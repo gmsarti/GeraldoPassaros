@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bf1jj8b2on64n"]
+
+[ext_resource type="Texture2D" uid="uid://bty6macowwnmw" path="res://assets/bg.png" id="1_2itfo"]
+[ext_resource type="Script" path="res://scripts/main_sabia.gd" id="1_lgu6r"]
+[ext_resource type="PackedScene" uid="uid://bggh7sitbbjo4" path="res://scenes/obstacles_sabia.tscn" id="2_pkoa6"]
+[ext_resource type="PackedScene" uid="uid://cxjf3y3xvf5bl" path="res://scenes/bird_sabia.tscn" id="3_tdbv6"]
+[ext_resource type="PackedScene" uid="uid://bjufvwhu3mm00" path="res://scenes/ground_sabia.tscn" id="4_3mwv0"]
+[ext_resource type="PackedScene" uid="uid://bpj8xnhrtlldn" path="res://scenes/game_over_sabia.tscn" id="6_58xb6"]
+
+[node name="MainSabia" type="Node"]
+script = ExtResource("1_lgu6r")
+obstacle_scene = ExtResource("2_pkoa6")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_2itfo")
+offset = Vector2(432, 384)
+
+[node name="BirdSabia" parent="." instance=ExtResource("3_tdbv6")]
+
+[node name="GroundSabia" parent="." instance=ExtResource("4_3mwv0")]
+z_index = 1
+
+[node name="ObstacleTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="ScoreLabelSabia" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_right = 31.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="GameOverSabia" parent="." instance=ExtResource("6_58xb6")]
+
+[connection signal="body_entered" from="GroundSabia" to="." method="_on_ground_sabia_body_entered"]
+[connection signal="hit" from="GroundSabia" to="." method="_on_ground_sabia_hit"]
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="restart" from="GameOverSabia" to="." method="_on_game_over_sabia_restart"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjufvwhu3mm00"]
+
+[ext_resource type="Script" path="res://scripts/ground_sabia.gd" id="1_36mqo"]
+[ext_resource type="Texture2D" uid="uid://qjw7qsledojk" path="res://assets/ground.png" id="2_rarh3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6705"]
+size = Vector2(1728, 168)
+
+[node name="GroundSabia" type="Area2D"]
+script = ExtResource("1_36mqo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 852)
+texture = ExtResource("2_rarh3")
+offset = Vector2(864, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(864, 852)
+shape = SubResource("RectangleShape2D_o6705")

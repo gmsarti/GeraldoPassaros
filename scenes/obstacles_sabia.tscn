@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bggh7sitbbjo4"]
+
+[ext_resource type="Texture2D" uid="uid://cw5c5uwtd72y2" path="res://assets/pipe.png" id="1_nnnsm"]
+[ext_resource type="Script" path="res://scripts/obstacles_sabia.gd" id="1_w8l3h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_us7tg"]
+size = Vector2(78, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm4ph"]
+size = Vector2(72, 524)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ec2vh"]
+size = Vector2(78, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ki0k"]
+size = Vector2(72, 525)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3xls"]
+size = Vector2(19.5, 200)
+
+[node name="ObstaclesSabia" type="Area2D" groups=["obstacles_sabia"]]
+script = ExtResource("1_w8l3h")
+
+[node name="Upper" type="Sprite2D" parent="."]
+texture = ExtResource("1_nnnsm")
+offset = Vector2(0, -380)
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -118)
+shape = SubResource("RectangleShape2D_us7tg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -398)
+shape = SubResource("RectangleShape2D_vm4ph")
+
+[node name="Lower" type="Sprite2D" parent="."]
+texture = ExtResource("1_nnnsm")
+offset = Vector2(0, 380)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, 118)
+shape = SubResource("RectangleShape2D_ec2vh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0, 398.5)
+shape = SubResource("RectangleShape2D_6ki0k")
+
+[node name="ScoreArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
+position = Vector2(9.25, 0)
+shape = SubResource("RectangleShape2D_b3xls")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]
