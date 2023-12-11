@@ -16,7 +16,7 @@ Gavião flecha a atirar
 Geraldo era um homem mágico
 que virava pássaro pra desenganar
 Ele catava milho
-Pra salvar os filho
+Pra salvar os filhos
 Pra se libertar
 ```
 
